@@ -46,7 +46,7 @@ L'application tourne par défaut sur le port **3001**.
 
 Un script PowerShell intelligent est fourni (`restart.ps1`). Il vérifie si le port 3001 est occupé, tue le processus bloquant si nécessaire, et lance l'application proprement.
 
-Dans un terminal PowerShell à la racine du dossier `antigravity` :
+Dans un terminal PowerShell à la racine du dossier workspace :
 
 ```powershell
 ./restart.ps1
