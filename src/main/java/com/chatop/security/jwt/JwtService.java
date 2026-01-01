@@ -1,3 +1,7 @@
+/*
+ * Service utilitaire pour la gestion des JSON Web Tokens (JWT).
+ * Contient les méthodes pour générer un token, extraire le username et valider la signature.
+ */
 package com.chatop.security.jwt;
 
 import io.jsonwebtoken.Claims;
@@ -24,6 +28,11 @@ public class JwtService {
     @Value("${chatop.app.jwtExpirationMs}")
     private long jwtExpiration;
 
+    /*
+     * Objectif : Extraire le nom d'utilisateur (sujet) du token.
+     * Entrée : Token JWT.
+     * Sortie : String (username).
+     */
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
@@ -33,6 +42,11 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
+    /*
+     * Objectif : Générer un nouveau token pour un utilisateur.
+     * Entrée : UserDetails (l'utilisateur).
+     * Sortie : String (le token JWT).
+     */
     public String generateToken(UserDetails userDetails) {
         return generateToken(new HashMap<>(), userDetails);
     }
@@ -52,6 +66,11 @@ public class JwtService {
                 .compact();
     }
 
+    /*
+     * Objectif : Vérifier si un token est valide pour un utilisateur donné.
+     * Entrée : Token JWT, UserDetails.
+     * Sortie : boolean (vrai si valide, faux sinon).
+     */
     public boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);

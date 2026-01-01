@@ -1,3 +1,7 @@
+/*
+ * Ce contrôleur gère la récupération des informations utilisateur.
+ * Il permet d'obtenir les détails d'un utilisateur spécifique via son ID.
+ */
 package com.chatop.controller;
 
 import com.chatop.dto.UserDto;
@@ -22,6 +26,11 @@ public class UserController {
         this.userService = userService;
     }
 
+    /*
+     * Objectif : Lire les informations publiques d'un utilisateur.
+     * Entrée : ID de l'utilisateur (via l'URL).
+     * Sortie : UserDto (nom, email, etc.).
+     */
     @GetMapping("/{id}")
     @Operation(summary = "Get user by ID")
     @SecurityRequirement(name = "bearerAuth")

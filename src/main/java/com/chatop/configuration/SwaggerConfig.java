@@ -1,3 +1,7 @@
+/*
+ * Configuration de la documentation OpenAPI (Swagger).
+ * Définit les informations générales de l'API et le schéma de sécurité (Bearer Auth).
+ */
 package com.chatop.configuration;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;

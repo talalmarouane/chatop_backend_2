@@ -1,3 +1,7 @@
+/*
+ * Ce contrôleur gère l'envoi de messages.
+ * Il permet aux utilisateurs d'envoyer un message au propriétaire d'une location.
+ */
 package com.chatop.controller;
 
 import com.chatop.dto.MessageRequest;
@@ -23,6 +27,11 @@ public class MessageController {
         this.messageService = messageService;
     }
 
+    /*
+     * Objectif : Envoyer un message concernant une location.
+     * Entrée : MessageRequest (corps du message, ID utilisateur, ID location).
+     * Sortie : MessageResponse (confirmation d'envoi).
+     */
     @PostMapping
     @Operation(summary = "Send a message")
     @SecurityRequirement(name = "bearerAuth")

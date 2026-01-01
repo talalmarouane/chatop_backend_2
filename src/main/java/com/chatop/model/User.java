@@ -1,3 +1,7 @@
+/*
+ * Entité JPA représentant la table 'USERS' en base de données.
+ * Stocke les informations de connexion (email, mot de passe) et le nom de l'utilisateur.
+ */
 package com.chatop.model;
 
 import jakarta.persistence.*;

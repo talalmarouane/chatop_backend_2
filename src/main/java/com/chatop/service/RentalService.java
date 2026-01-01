@@ -1,3 +1,8 @@
+/*
+ * Ce service contient la logique métier pour les locations.
+ * Il gère la conversion entre Entités et DTOs, la sauvegarde des images sur le disque
+ * et l'interaction avec la base de données pour les locations.
+ */
 package com.chatop.service;
 
 import com.chatop.dto.RentalDto;
@@ -40,6 +45,11 @@ public class RentalService {
         this.modelMapper = modelMapper;
     }
 
+    /*
+     * Objectif : Récupérer la liste complète des locations.
+     * Entrée : Aucune.
+     * Sortie : RentalsResponse contenant la liste des RentalDto.
+     */
     public RentalsResponse getAllRentals() {
         List<Rental> rentals = rentalRepository.findAll();
         List<RentalDto> rentalDtos = rentals.stream()
@@ -57,6 +67,11 @@ public class RentalService {
         return new RentalsResponse(rentalDtos);
     }
 
+    /*
+     * Objectif : Récupérer une location par son ID.
+     * Entrée : ID de la location.
+     * Sortie : RentalDto (ou erreur si non trouvée).
+     */
     public RentalDto getRentalById(Long id) {
         Rental rental = rentalRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Rental not found"));
@@ -72,6 +87,11 @@ public class RentalService {
                 rental.getUpdatedAt());
     }
 
+    /*
+     * Objectif : Créer une nouvelle location avec image.
+     * Entrée : RentalDto (données), MultipartFile (image), email du propriétaire.
+     * Sortie : Aucune (void).
+     */
     public void createRental(RentalDto rentalDto, MultipartFile picture, String ownerEmail) {
         User owner = userRepository.findByEmail(ownerEmail)
                 .orElseThrow(() -> new RuntimeException("User not found"));
@@ -89,6 +109,11 @@ public class RentalService {
         rentalRepository.save(rental);
     }
 
+    /*
+     * Objectif : Mettre à jour les informations d'une location.
+     * Entrée : ID de la location, RentalDto (nouvelles données).
+     * Sortie : Aucune (void).
+     */
     public void updateRental(Long id, RentalDto rentalDto) {
         Rental rental = rentalRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Rental not found"));
@@ -101,6 +126,11 @@ public class RentalService {
         rentalRepository.save(rental);
     }
 
+    /*
+     * Objectif : Sauvegarder un fichier image sur le système de fichiers local.
+     * Entrée : MultipartFile (le fichier uploadé).
+     * Sortie : String (URL d'accès à l'image).
+     */
     private String saveFile(MultipartFile file) {
         if (file.isEmpty()) {
             return null;

@@ -1,3 +1,7 @@
+/*
+ * Configuration du bean ModelMapper.
+ * Permet d'injecter une instance de ModelMapper dans les services pour la conversion Entity/DTO.
+ */
 package com.chatop.configuration;
 
 import org.modelmapper.ModelMapper;

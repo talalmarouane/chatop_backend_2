@@ -1,3 +1,7 @@
+/*
+ * Classe principale de l'application Spring Boot.
+ * Contient la méthode main qui lance le serveur intégré.
+ */
 package com.chatop;
 
 import org.springframework.boot.SpringApplication;

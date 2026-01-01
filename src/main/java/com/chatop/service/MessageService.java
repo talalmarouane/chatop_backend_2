@@ -1,3 +1,7 @@
+/*
+ * Ce service gère la logique métier liée aux messages.
+ * Il s'occupe de la sauvegarde des nouveaux messages en base de données.
+ */
 package com.chatop.service;
 
 import com.chatop.dto.MessageRequest;
@@ -23,6 +27,11 @@ public class MessageService {
                 this.rentalRepository = rentalRepository;
         }
 
+        /*
+         * Objectif : Créer et sauvegarder un nouveau message.
+         * Entrée : MessageRequest (contenu, ID user, ID rental).
+         * Sortie : Aucune (void).
+         */
         public void createMessage(MessageRequest request) {
                 User user = userRepository.findById(request.userId())
                                 .orElseThrow(() -> new RuntimeException("User not found"));

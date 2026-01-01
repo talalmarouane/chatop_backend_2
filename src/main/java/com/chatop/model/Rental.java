@@ -1,3 +1,7 @@
+/*
+ * Entité JPA représentant la table 'RENTALS' en base de données.
+ * Stocke les informations d'une location (nom, surface, prix, description, photo).
+ */
 package com.chatop.model;
 
 import jakarta.persistence.*;

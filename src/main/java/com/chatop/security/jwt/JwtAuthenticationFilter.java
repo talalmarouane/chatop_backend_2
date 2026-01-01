@@ -1,3 +1,8 @@
+/*
+ * Filtre de sécurité interceptant chaque requête HTTP.
+ * Vérifie la présence et la validité du token JWT dans l'en-tête Authorization
+ * et authentifie l'utilisateur dans le contexte de sécurité Spring.
+ */
 package com.chatop.security.jwt;
 
 import jakarta.servlet.FilterChain;
@@ -26,6 +31,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         this.userDetailsService = userDetailsService;
     }
 
+    /*
+     * Objectif : Filtrer chaque requête pour vérifier l'authentification JWT.
+     * Entrée : HttpServletRequest, HttpServletResponse, FilterChain.
+     * Sortie : Aucune (void), passe la main au filtre suivant.
+     */
     @Override
     protected void doFilterInternal(
             @NonNull HttpServletRequest request,

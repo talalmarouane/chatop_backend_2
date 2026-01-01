@@ -1,3 +1,7 @@
+/*
+ * Configuration MVC.
+ * Peut être utilisé pour configurer les CORS ou d'autres réglages Web globaux.
+ */
 package com.chatop.configuration;
 
 import org.springframework.context.annotation.Configuration;

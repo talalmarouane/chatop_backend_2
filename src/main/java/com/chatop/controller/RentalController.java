@@ -1,3 +1,8 @@
+/*
+ * Ce contrôleur gère les opérations CRUD pour les locations (Rentals).
+ * Il permet de récupérer la liste des locations, d'obtenir le détail d'une location,
+ * de créer une nouvelle location (avec image) et de mettre à jour une location existante.
+ */
 package com.chatop.controller;
 
 import com.chatop.dto.RentalDto;
@@ -25,12 +30,22 @@ public class RentalController {
         this.rentalService = rentalService;
     }
 
+    /*
+     * Objectif : Lister toutes les locations disponibles.
+     * Entrée : Aucune.
+     * Sortie : RentalsResponse (une liste d'objets RentalDto).
+     */
     @GetMapping
     @Operation(summary = "Get all rentals")
     public ResponseEntity<RentalsResponse> getAllRentals() {
         return ResponseEntity.ok(rentalService.getAllRentals());
     }
 
+    /*
+     * Objectif : Obtenir le détail d'une location spécifique.
+     * Entrée : ID de la location (via l'URL).
+     * Sortie : RentalDto (les détails complets de la location).
+     */
     @GetMapping("/{id}")
     @Operation(summary = "Get a rental by ID")
     @SecurityRequirement(name = "bearerAuth")
@@ -38,6 +53,11 @@ public class RentalController {
         return ResponseEntity.ok(rentalService.getRentalById(id));
     }
 
+    /*
+     * Objectif : Créer une nouvelle location.
+     * Entrée : Données multipart (nom, surface, prix, description, fichier image).
+     * Sortie : Message de confirmation.
+     */
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "Create a new rental")
     @SecurityRequirement(name = "bearerAuth")
@@ -63,6 +83,12 @@ public class RentalController {
         return ResponseEntity.ok(Map.of("message", "Rental created !"));
     }
 
+    /*
+     * Objectif : Mettre à jour une location existante.
+     * Entrée : ID de la location, et les nouvelles données (nom, surface, prix,
+     * description).
+     * Sortie : Message de confirmation.
+     */
     @PutMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "Update a rental")
     @SecurityRequirement(name = "bearerAuth")

@@ -1,3 +1,7 @@
+/*
+ * Configuration des beans liés à l'authentification.
+ * Déclare l'AuthenticationManager, l'AuthenticationProvider et le PasswordEncoder (BCrypt).
+ */
 package com.chatop.configuration;
 
 import com.chatop.repository.UserRepository;

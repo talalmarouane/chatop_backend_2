@@ -1,3 +1,7 @@
+/*
+ * DTO représentant une location.
+ * Utilisé pour exposer les données d'une location via l'API sans exposer l'entité directement.
+ */
 package com.chatop.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -5,13 +9,13 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 public record RentalDto(
-        Long id,
-        String name,
-        BigDecimal surface,
-        BigDecimal price,
-        String picture,
-        String description,
-        @JsonProperty("owner_id") Long ownerId,
-        @JsonProperty("created_at") Timestamp createdAt,
-        @JsonProperty("updated_at") Timestamp updatedAt) {
+                Long id,
+                String name,
+                BigDecimal surface,
+                BigDecimal price,
+                String picture,
+                String description,
+                @JsonProperty("owner_id") Long ownerId,
+                @JsonProperty("created_at") Timestamp createdAt,
+                @JsonProperty("updated_at") Timestamp updatedAt) {
 }

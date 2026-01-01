@@ -1,3 +1,7 @@
+/*
+ * Interface Repository pour l'entité User.
+ * Contient une méthode spécifique pour trouver un utilisateur par son email.
+ */
 package com.chatop.repository;
 
 import com.chatop.model.User;

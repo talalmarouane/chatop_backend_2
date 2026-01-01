@@ -1,3 +1,8 @@
+/*
+ * Ce service contient la logique métier de l'authentification.
+ * Il gère la création des utilisateurs, la vérification des identifiants
+ * et la génération des tokens JWT.
+ */
 package com.chatop.service;
 
 import com.chatop.dto.LoginRequest;
@@ -28,6 +33,11 @@ public class AuthService {
         this.authenticationManager = authenticationManager;
     }
 
+    /*
+     * Objectif : Enregistrer un nouvel utilisateur en base de données.
+     * Entrée : RegisterRequest (données d'inscription).
+     * Sortie : TokenResponse (token JWT généré).
+     */
     public TokenResponse register(RegisterRequest request) {
         // Vérifier si l'email existe déjà
         if (userRepository.findByEmail(request.email()).isPresent()) {
@@ -44,6 +54,11 @@ public class AuthService {
         return new TokenResponse(jwtToken);
     }
 
+    /*
+     * Objectif : Authentifier un utilisateur et générer un token.
+     * Entrée : LoginRequest (login et mot de passe).
+     * Sortie : TokenResponse (token JWT) ou erreur si échec.
+     */
     public TokenResponse login(LoginRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -55,6 +70,11 @@ public class AuthService {
         return new TokenResponse(jwtToken);
     }
 
+    /*
+     * Objectif : Récupérer les détails d'un utilisateur par son email.
+     * Entrée : Email de l'utilisateur.
+     * Sortie : UserDto (détails) ou erreur si non trouvé.
+     */
     public UserDto getCurrentUser(String email) {
         User user = userRepository.findByEmail(email).orElseThrow();
         return new UserDto(

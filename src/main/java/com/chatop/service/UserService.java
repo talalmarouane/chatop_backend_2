@@ -1,3 +1,7 @@
+/*
+ * Ce service gère la récupération des données utilisateur.
+ * Il fait le lien avec le repository pour trouver un utilisateur par son ID.
+ */
 package com.chatop.service;
 
 import com.chatop.dto.UserDto;
@@ -16,6 +20,11 @@ public class UserService {
         this.modelMapper = modelMapper;
     }
 
+    /*
+     * Objectif : Trouver un utilisateur par son ID.
+     * Entrée : ID de l'utilisateur.
+     * Sortie : UserDto.
+     */
     public UserDto getUserById(Long id) {
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
         return new UserDto(

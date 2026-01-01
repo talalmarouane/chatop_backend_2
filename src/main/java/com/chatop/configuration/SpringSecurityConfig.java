@@ -1,3 +1,8 @@
+/*
+ * Classe de configuration principale de la sécurité.
+ * Définit la chaîne de filtres (SecurityFilterChain), gère les autorisations HTTP
+ * et configure le mode Stateless pour l'utilisation de JWT.
+ */
 package com.chatop.configuration;
 
 import com.chatop.security.jwt.JwtAuthenticationFilter;

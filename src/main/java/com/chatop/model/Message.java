@@ -1,3 +1,7 @@
+/*
+ * Entité JPA représentant la table 'MESSAGES' en base de données.
+ * Contient le message, la date de création et les relations vers l'utilisateur et la location.
+ */
 package com.chatop.model;
 
 import jakarta.persistence.*;
